@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PROXY MTH TEAM V20.3 — Free Fire</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            touch-action: manipulation;
+        }
+
+        body {
+            background: linear-gradient(135deg, #050508 0%, #0f0f1a 50%, #0a0a12 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            color: #fff;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* 💻 FONDO HACKER MEJORADO */
+        .fondo-hacker {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .codigo {
+            position: absolute;
+            color: #00ff99;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 16px;
+            opacity: 0.15;
+            white-space: nowrap;
+            animation: caer linear infinite;
+            text-shadow: 0 0 6px #00ff99;
+        }
+
+        @keyframes caer {
+            0% { transform: translateY(-100%); opacity: 0; }
+            10% { opacity: 0.18; }
+            90% { opacity: 0.18; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        .particula {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #ff0055;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #ff0055;
+            animation: flotar 4s ease-in-out infinite;
+        }
+
+        @keyframes flotar {
+            0%,100% { transform: translateY(0) scale(1); opacity: 0.3; }
+            50% { transform: translateY(-30px) scale(1.5); opacity: 0.8; }
+        }
+
+        /* 🏷️ CRÉDITOS CHAMO YT */
+        .creditos {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: linear-gradient(135deg, rgba(0,255,153,0.15), rgba(0,204,120,0.08));
+            color: #00ff99;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(0,255,153,0.35);
+            z-index: 100;
+            letter-spacing: 1px;
+            box-shadow: 0 0 12px rgba(0,255,153,0.15);
+        }
+
+        .version {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(135deg, rgba(255,0,85,0.15), rgba(200,0,60,0.08));
+            color: #ff0055;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,0,85,0.35);
+            z-index: 100;
+        }
+
+        /* 🏷️ LOGO PRINCIPAL */
+        .logo {
+            text-align: center;
+            margin: 60px 0 25px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo h1 {
+            font-size: 48px;
+            font-weight: 900;
+            background: linear-gradient(90deg, #ff0055, #ff3377, #ff0055);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: brilloTexto 2.5s ease-in-out infinite;
+            letter-spacing: 3px;
+        }
+
+        @keyframes brilloTexto {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+
+        .logo span {
+            display: block;
+            font-size: 22px;
+            color: #00ff99;
+            margin-top: -5px;
+            text-shadow: 0 0 10px #00ff99;
+            letter-spacing: 6px;
+        }
+
+        .logo .subtitulo {
+            font-size: 13px;
+            color: #888;
+            margin-top: 8px;
+            letter-spacing: 2px;
+        }
+
+        /* 📦 CONTENEDOR */
+        .contenedor {
+            width: 100%;
+            max-width: 460px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* 📂 SECCIONES */
+        .seccion {
+            background: rgba(20,20,35,0.8);
+            border: 2px solid rgba(50,50,75,0.6);
+            border-radius: 14px;
+            padding: 12px 15px;
+            backdrop-filter: blur(8px);
+        }
+
+        .titulo-seccion {
+            font-size: 15px;
+            font-weight: 700;
+            color: #ff0055;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .titulo-seccion::before {
+            content: '';
+            width: 4px;
+            height: 16px;
+            background: linear-gradient(180deg, #ff0055, #ff3377);
+            border-radius: 2px;
+        }
+
+        /* 🎯 OPCIONES */
+        .opcion {
+            background: rgba(30,30,50,0.6);
+            border: 2px solid rgba(60,60,90,0.4);
+            border-radius: 10px;
+            padding: 14px 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .opcion.activo {
+            border-color: #ff0055;
+            background: rgba(50,20,35,0.7);
+            box-shadow: 0 0 18px rgba(255,0,85,0.35), inset 0 0 12px rgba(255,0,85,0.08);
+            animation: pulsar 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulsar {
+            0%,100% { box-shadow: 0 0 18px rgba(255,0,85,0.35); }
+            50% { box-shadow: 0 0 28px rgba(255,0,85,0.55); }
+        }
+
+        .opcion:hover {
+            border-color: rgba(255,0,85,0.5);
+            background: rgba(45,25,50,0.5);
+        }
+
+        .opcion-info h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+
+        .opcion-info p {
+            font-size: 11px;
+            color: #888;
+        }
+
+        .toggle-switch {
+            width: 50px;
+            height: 26px;
+            background: #333;
+            border-radius: 13px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            background: #666;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .opcion.activo .toggle-switch {
+            background: linear-gradient(90deg, #ff0055, #ff3377);
+            box-shadow: 0 0 12px rgba(255,0,85,0.4);
+        }
+
+        .opcion.activo .toggle-switch::after {
+            left: 27px;
+            background: #fff;
+        }
+
+        /* 🎚️ SLIDERS */
+        .slider-container {
+            margin-top: 10px;
+            padding: 5px 0;
+        }
+
+        .slider-label {
+            font-size: 12px;
+            color: #aaa;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            background: rgba(60,60,90,0.5);
+            border-radius: 3px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            background: linear-gradient(135deg, #ff0055, #ff3377);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255,0,85,0.5);
+        }
+
+        /* 🚀 BOTONES PRINCIPALES */
+        .botones-accion {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .btn-launch {
+            flex: 1;
+            padding: 18px;
+            background: linear-gradient(90deg, #ff0055, #ff3377, #ff0055);
+            background-size: 200% auto;
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 19px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 4px 25px rgba(255,0,85,0.4);
+            transition: all 0.3s;
+            animation: moverBrillo 2.5s ease-in-out infinite;
+        }
+
+        @keyframes moverBrillo {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+
+        .btn-launch:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 15px rgba(255,0,85,0.4);
+        }
+
+        .btn-reset {
+            width: 60px;
+            height: 60px;
+            background: rgba(50,50,80,0.8);
+            border: 2px solid rgba(80,80,120,0.5);
+            border-radius: 12px;
+            color: #ff9900;
+            font-size: 22px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-reset:hover {
+            border-color: #ff9900;
+            box-shadow: 0 0 15px rgba(255,153,0,0.3);
+        }
+
+        /* 📋 INFO JUEGO */
+        .info-juego {
+            background: rgba(25,25,40,0.8);
+            border: 2px solid rgba(50,50,80,0.5);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            backdrop-filter: blur(8px);
+            position: relative;
+            z-index: 10;
+        }
+
+        .icono-juego {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #ff6a00, #ff0055);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            box-shadow: 0 0 15px rgba(255,106,0,0.3);
+        }
+
+        .datos-juego h4 {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .datos-juego span {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .boton-copiar {
+            margin-left: auto;
+            background: transparent;
+            border: none;
+            color: #666;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .boton-copiar:hover {
+            color: #00ff99;
+            transform: rotate(180deg);
+        }
+
+        /* ✅ ESTADO */
+        .estado {
+            margin-top: 18px;
+            font-size: 13px;
+            color: #00ff99;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            text-shadow: 0 0 5px rgba(0,255,153,0.3);
+            background: rgba(0,255,153,0.05);
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(0,255,153,0.2);
+            max-width: 460px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 💻 FONDO HACKER -->
+    <div class="fondo-hacker" id="fondoHacker"></div>
+
+    <!-- 🏷️ CRÉDITOS Y VERSIÓN -->
+    <div class="creditos">👤 CHAMO YT</div>
+    <div class="version">V20.3 🔥</div>
+
+    <!-- 🏷️ LOGO -->
+    <div class="logo">
+        <h1>PROXY MTH</h1>
+        <span>TEAM</span>
+        <p class="subtitulo">FREE FIRE — ACTUALIZADO & OPTIMIZADO</p>
+    </div>
+
+    <!-- 📋 OPCIONES -->
+    <div class="contenedor">
+        
+        <!-- 🎯 SECCIÓN: AIM & HEADSHOT -->
+        <div class="seccion">
+            <div class="titulo-seccion">🎯 AIM & HEADSHOT</div>
+            
+            <div class="opcion" id="op1" onclick="toggle(1)">
+                <div class="opcion-info">
+                    <h3>HS Cuello + Antena</h3>
+                    <p>Apuntado automático a zona del cuello con marcador</p>
+                </div>
+                <div class="toggle-switch"></div>
+            </div>
+
+            <div class="opcion" id="op2" onclick="toggle(2)">
+                <div class="opcion-info">
+                    <h3>HS Alto + Antena</h3>
+                    <p>Apuntado perfecto a la parte superior de la cabeza</p>
+                </div>
+                <div class="toggle-switch"></div>
+            </div>
+
+            <div class="opcion" id="op3" onclick="toggle(3)">
+                <div class="opcion-info">
+                    <h3>HS Pecho + Antena</h3>
+                    <p>Apuntado al pecho con detección ampliada</p>
+                </div>
+                <div class="toggle-switch"></div>
+            </div>
+
+            <div class="opcion" id="op4" onclick="toggle(4)">
+                <div class="opcion-info">
+                    <h3>Aimbot Completo</h3>
+                    <p>Apuntado automático + seguimiento de movimiento</p>
+                </div>
+                <div class="toggle-switch"></div>
+            </div>
+
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Sensibilidad Aim</span>
+                    <span id="valorSens">75%</span>
+                </div>
+                <input type="range" min="0" max="100" value="75" oninput="document.getElementById('valorSens').textContent=this.value+'%'">
+            </div>
+        </div>
+
+        <!-- ⚡ SECCIÓN: MOVIMIENTO & VELOCIDAD -->
+        <div class="seccion">
+            <div class="titulo-seccion">⚡ MOVIMIENTO & VELOCIDAD</div>
+            
+            <div class="opcion" id="op5" onclick="toggle(5)">
+                <div class="opcion-info">
+                    <h3>Pantalla Estática</h3>
+                    <p>Sin retroceso visual + movimiento instantáneo</p>
+                </div>
+                <div class="toggle-switch"></div>
+            </div>
+
+            <div class="opcion" id="op6" onclick="toggle(6)">
+                <div class="opcion-info">
+                    <h3>Super Salto</h3>
+                    <p>Altura de salto aumentada al máximo</p>
+                </div>
+                <div class="toggle-switch"></div>
+            </div>
+
+            <div class="opcion" id="op7" onclick="toggle(7)">
+                <div class="opcion-info">
+                    <h3>Salto Atrás Mejorado</h3>
+                    <p>Estilo clásico + velocidad extra</p>
+                </div>
+                <div class="toggle-switch"></div>
+            </div>
+
+            <div class="opcion" id="op8" onclick="toggle(8)">
+                <div class="opcion-info">
+                    <h3>Velocidad Extrema</h3>
+                    <p>Movimiento rápido sin ralentización</p>
+                </div>
+                <div class="toggle-switch"></div>
+            </div>
+
+            <div class="opcion" id="op9" onclick="toggle(9)">
+                <div class="opcion-info">
+                    <h3>Sin Gravedad / Float</h3>
+                    <p>Caída lenta + salto flotante</p>
+                </div>
+                <div class="toggle-switch"></div>
+            </div>
+
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Multiplicador de Velocidad</span>
+                    <span id="valorVel">2.5x</span>
+                </div>
+                <input type="range" min="10" max="50" value="25" oninput="document.getElementById('valorVel').textContent=(this.value/10).toFixed(1)+'x'">
+            </div>
+        </div>
+
+        <!-- 👁️ SECCIÓN: VISUAL & ESP -->
+        <div class="seccion">
+            <div class="titulo-seccion">👁️ VISUAL & ESP</div>
+            
+            <div class="opcion" id="op10" onclick="toggle(10)">
+                <div class="opcion-info">
+                    <h3>ESP Jugadores</h3>
+                    <p>Ver enemigos a través de las paredes</p>
+                </div>
+                <div class="toggle-switch"></div>
+            </div>
+
+            <div class="opcion" id="op11" onclick="toggle(11)">
+                <div class="opcion-info">
+                    <h3>ESP Esqueleto</h3>
+                    <p>Esqueleto completo del enemigo visible</p>
+                </div>
+                <div class="toggle-switch"></div>
+            </div>
+
+            <div class="opcion" id="op12" onclick="toggle(12)">
+                <div class="opcion-info">
+                    <h3>ESP Línea</h3>
+                    <p>Línea de dirección hacia cada enemigo</p>
+                </div>
+                <div class="toggle-switch"></div>
+            </div>
+
+            <div class="opcion" id="op13" onclick="toggle(13)">
+                <div class="opcion-info">
+                    <h3>ESP Cajas / Armas</h3>
+                    <p>Ver objetos y botín a distancia</p>
+                </div>
+                <div class="toggle-switch"></div>
+            </div>
+        </div>
+
+        <!-- 🔧 SECCIÓN: AVANZADO & EXTRAS -->
+        <div class="seccion">
+            <div class="titulo-seccion">🔧 AVANZADO & EXTRAS</div>
+            
+            <div class="opcion" id="op14" onclick="toggle(14)">
+                <div class="opcion-info">
+                    <h3>Sin Retroceso (No Recoil)</h3>
+                    <p>Elimina el retroceso de todas las armas</p>
+                </div>
+                <div class="toggle-switch"></div>
+            </div>
+
+            <div class="opcion" id="op15" onclick="toggle(15)">
+                <div class="opcion-info">
+                    <h3>Cambio Rápido de Arma</h3>
+                    <p>Cambio instantáneo sin demora</p>
+                </div>
+                <div class="toggle-switch"></div>
+            </div>
+
+            <div class="opcion" id="op16" onclick="toggle(16)">
+                <div class="opcion-info">
+                    <h3>Sensibilidad Sin Límite</h3>
+                    <p>Desbloquea límites de giro</p>
+                </div>
+                <div class="toggle-switch"></div>
+            </div>
+
+            <div class="opcion" id="op17" onclick="toggle(17)">
+                <div class="opcion-info">
+                    <h3>Antibaneo Protección</h3>
+                    <p>Ofuscación de datos + camuflaje</p>
+                </div>
+                <div class="toggle-switch"></div>
+            </div>
+
+            <div class="opcion" id="op18" onclick="toggle(18)">
+                <div class="opcion-info">
+                    <h3>Modo Fantasma</h3>
+                    <p>Menú invisible + sigilo total</p>
+                </div>
+                <div class="toggle-switch"></div>
+            </div>
+        </div>
+
+        <!-- 🎮 INFO JUEGO -->
+        <div class="info-juego">
+            <div class="icono-juego">🎮</div>
+            <div class="datos-juego">
+                <h4>Free Fire MAX</h4>
+                <span>Versión 2.127.1 | Proxy MTH V20.3</span>
+            </div>
+            <button class="boton-copiar" onclick="copiarCodigo()">📋</button>
+        </div>
+    </div>
+
+    <!-- 🚀 BOTONES DE ACCIÓN -->
+    <div class="botones-accion">
+        <button class="btn-launch" onclick="lanzar()">▶️ INJECT — PROXY MTH</button>
+        <button class="btn-reset" onclick="reiniciar()">🔄</button>
+    </div>
+
+    <!-- ✅ ESTADO -->
+    <div class="estado" id="estado">✅ PROXY MTH TEAM V20.3 cargado — Creado por CHAMO YT | Esperando activación...</div>
+
+<script>
+    // 💻 GENERAR FONDO HACKER ANIMADO
+    const codigoLineas = [
+        '0100100101100110', 'function hack() {', 'while(true) {',
+        'PROXY_MTH=true;', 'aimbot=ON;', 'norecoil=MAX;',
+        'speed=2.5x;', 'jump=SUPER;', 'esp=ALL;',
+        'sensi=UNLIMITED;', 'antiban=ACTIVE;', '// CHAMO YT',
+        '0x00FF99;', '0xFF0055;', 'encrypt(data);',
+        'bypass=SUCCESS;', 'inject=COMPLETE;', '// MTH TEAM V20.3',
+        'no_recoil=true;', 'silent_aim=ON;', 'fov=180;',
+        '// actualizado 2026', 'ping=OPTIMIZED;'
+    ];
+
+    const fondo = document.getElementById('fondoHacker');
+    const cantidad = 30;
+
+    for(let i = 0; i < cantidad; i++) {
+        const linea = document.createElement('div');
+        linea.className = 'codigo';
+        linea.textContent = codigoLineas[Math.floor(Math.random() * codigoLineas.length)];
+        linea.style.left = `${Math.random() * 100}%`;
+        linea.style.animationDuration = `${5 + Math.random() * 12}s`;
+        linea.style.animationDelay = `${Math.random() * 10}s`;
+        fondo.appendChild(linea);
+    }
+
+    // ✨ Partículas decorativas
+    for(let i = 0; i < 15; i++) {
+        const p = document.createElement('div');
+        p.className = 'particula';
+        p.style.left = `${Math.random() * 100}%`;
+        p.style.top = `${Math.random() * 100}%`;
+        p.style.animationDelay = `${Math.random() * 4}s`;
+        p.style.animationDuration = `${3 + Math.random() * 3}s`;
+        fondo.appendChild(p);
+    }
+
+    // 📊 Estado de cada opción
+    const estados = {};
+    const nombres = {
+        1: 'HS Cuello + Antena', 2: 'HS Alto + Antena', 3: 'HS Pecho + Antena',
+        4: 'Aimbot Completo', 5: 'Pantalla Estática', 6: 'Super Salto',
+        7: 'Salto Atrás Mejorado', 8: 'Velocidad Extrema', 9: 'Sin Gravedad / Float',
+        10: 'ESP Jugadores', 11: 'ESP Esqueleto', 12: 'ESP Línea',
+        13: 'ESP Cajas / Armas', 14: 'Sin Retroceso', 15: 'Cambio Rápido de Arma',
+        16: 'Sensibilidad Sin Límite', 17: 'Antibaneo Protección', 18: 'Modo Fantasma'
+    };
+
+    // 🔄 Activar / Desactivar opción
+    function toggle(num) {
+        estados[num] = !estados[num];
+        const op = document.getElementById(`op${num}`);
+        op.classList.toggle('activo', estados[num]);
+
+        document.getElementById('estado').textContent = 
+            estados[num] ? `✅ ${nombres[num]} — ACTIVADO | PROXY MTH V20.3 — CHAMO YT` : 
+            `❌ ${nombres[num]} — Desactivado`;
+    }
+
+    // 🚀 Lanzar / Inyectar
+    function lanzar() {
+        const activados = Object.entries(estados).filter(([k,v])=>v).map(([k])=>k);
+        if(activados.length === 0) {
+            document.getElementById('estado').textContent = '⚠️ Activa al menos una opción primero — PROXY MTH V20.3';
+            return;
+        }
+        document.getElementById('estado').innerHTML = 
+            '🚀 <b>INYECTANDO...</b> Módulos: ' + activados.length + ' | PROXY MTH TEAM V20.3 — CHAMO YT ✅ <br>' +
+            '✅ Antibaneo activo | ✅ Todos los sistemas operativos compatibles';
+    }
+
+    // 🔄 Reiniciar todo
+    function reiniciar() {
+        Object.keys(estados).forEach(num => {
+            estados[num] = false;
+            document.getElementById(`op${num}`)?.classList.remove('activo');
+        });
+        document.getElementById('estado').textContent = '🔄 Proxy reiniciado — PROXY MTH V20.3 — CHAMO YT | Todo desactivado';
+    }
+
+    // 📋 Copiar configuración
+    function copiarCodigo() {
+        const activos = Object.entries(estados)
+            .filter(([k,v])=>v)
+            .map(([k])=>`MOD${k}=ON`)
+            .join(' & ');
+        if(!activos) {
+            alert('⚠️ No hay opciones activadas para copiar');
+            return;
+        }
+        const texto = `=== PROXY MTH TEAM V20.3 — FREE FIRE ===\nCreado por: CHAMO YT\nMódulos activos: ${activos}\nFecha: ${new Date().toLocaleDateString()}`;
+        navigator.clipboard.writeText(texto).then(()=>{
+            document.getElementById('estado').textContent = '📋 Configuración copiada al portapapeles ✅ — PROXY MTH V20.3 — CHAMO YT';
+        });
+    }
+</script>
+</body>
+</html>
